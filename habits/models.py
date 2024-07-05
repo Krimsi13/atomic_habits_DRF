@@ -25,16 +25,13 @@ class Habit(models.Model):
     )
 
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Создатель привычки")
-
     place = models.CharField(max_length=50, verbose_name="Место", **NULLABLE)
-
     time = models.TimeField(verbose_name="Время, когда необходимо выполнять привычку")
-
     action = models.CharField(max_length=50, verbose_name="Действие")
 
     is_enjoyable = models.BooleanField(default=False, verbose_name="Признак приятной привычки")
 
-    related_habit = models.ForeignKey("self", on_delete=models.CASCADE, verbose_name="Родительская привычка",
+    related_habit = models.ForeignKey("self", on_delete=models.CASCADE, verbose_name="Связанная привычка",
                                       **NULLABLE, related_name="related_to_habit")
 
     periodicity = models.CharField(choices=PERIOD_CHOICES, default=DAILY, verbose_name="Периодичность")
