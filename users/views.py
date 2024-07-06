@@ -3,11 +3,14 @@ from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView,
 from users.models import User
 from users.serializers import UserSerializer
 
+from rest_framework.permissions import AllowAny
+
 
 class UserCreateApiView(CreateAPIView):
     """Регистрация пользователя."""
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = (AllowAny,)
 
     def perform_create(self, serializer):
         user = serializer.save(is_active=True)
