@@ -4,6 +4,7 @@ from rest_framework.generics import (CreateAPIView, DestroyAPIView,
 
 
 from habits.models import Habit
+from habits.paginators import CustomPagination
 
 from habits.serializers import HabitSerializer
 
@@ -13,15 +14,23 @@ class HabitCreateAPIView(CreateAPIView):
     serializer_class = HabitSerializer
 
     def perform_create(self, serializer):
-        """Метод получения cоздателя привычки."""
+        """Метод получения cоздателя(владельца) привычки."""
         habit = serializer.save()
-        habit.creator = self.request.user
+        habit.owner = self.request.user
         habit.save()
 
 
 class HabitListAPIView(ListAPIView):
-    queryset = Habit.objects.all()
+    """Класс для получения списка привычек текущего пользователя."""
     serializer_class = HabitSerializer
+
+    pagination_class = CustomPagination
+
+    def get_queryset(self):
+        user = self.request.user
+        if not user.is_superuser:
+            return Habit.objects.filter(user=user)
+        return Habit.objects.all()
 
 
 class HabitRetrieveAPIView(RetrieveAPIView):
