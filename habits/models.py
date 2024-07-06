@@ -24,7 +24,9 @@ class Habit(models.Model):
         (WEEKLY, "Раз в неделю"),
     )
 
-    creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Создатель привычки")
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                              verbose_name="Создатель(владелец) привычки", **NULLABLE)
+
     place = models.CharField(max_length=50, verbose_name="Место", **NULLABLE)
     time = models.TimeField(verbose_name="Время, когда необходимо выполнять привычку")
     action = models.CharField(max_length=50, verbose_name="Действие")

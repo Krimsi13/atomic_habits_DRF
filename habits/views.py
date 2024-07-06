@@ -12,6 +12,12 @@ class HabitCreateAPIView(CreateAPIView):
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
 
+    def perform_create(self, serializer):
+        """Метод получения cоздателя привычки."""
+        habit = serializer.save()
+        habit.creator = self.request.user
+        habit.save()
+
 
 class HabitListAPIView(ListAPIView):
     queryset = Habit.objects.all()
