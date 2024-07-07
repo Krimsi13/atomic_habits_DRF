@@ -44,7 +44,6 @@ class Habit(models.Model):
 
     is_public = models.BooleanField(default=False, verbose_name="Признак публичности", **NULLABLE)
 
-    tg_id = models.CharField(max_length=50, verbose_name="Telegram_chat_id", **NULLABLE)
 
     def __str__(self) -> str:
         return f"Я буду {self.action} в {self.time} в {self.place} "

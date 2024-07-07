@@ -9,8 +9,7 @@ class User(AbstractUser):
 
     email = models.EmailField(unique=True, verbose_name="Email", max_length=255)
 
-    # возможно пригодится
-    # tg_id = models.CharField(max_length=50, verbose_name="telegram_id", **NULLABLE)
+    tg_id = models.CharField(max_length=50, verbose_name="telegram_id", **NULLABLE)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
