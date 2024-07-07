@@ -11,6 +11,7 @@ from users.permissions import IsOwner
 
 
 class HabitCreateAPIView(CreateAPIView):
+    """Класс для создания новой привычки."""
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
 
@@ -45,18 +46,21 @@ class HabitIsPublicListAPIView(ListAPIView):
 
 
 class HabitRetrieveAPIView(RetrieveAPIView):
+    """Класс для получения одной привычки."""
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
     permission_classes = [IsAuthenticated & IsOwner]
 
 
 class HabitUpdateAPIView(UpdateAPIView):
+    """Класс для изменения привычки."""
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
     permission_classes = [IsAuthenticated & IsOwner]
 
 
 class HabitDestroyAPIView(DestroyAPIView):
+    """Класс для удаления привычки."""
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
     permission_classes = [IsAuthenticated & IsOwner]

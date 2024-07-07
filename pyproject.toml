@@ -25,6 +25,7 @@ gevent = "^24.2.1"
 requests = "^2.32.3"
 pytz = "^2024.1"
 django-cors-headers = "^4.4.0"
+drf-yasg = "^1.21.7"
 
 [build-system]
 requires = ["poetry-core"]

@@ -19,15 +19,18 @@ class UserCreateApiView(CreateAPIView):
 
 
 class UserRetrieveApiView(RetrieveAPIView):
+    """Класс для получения пользователя."""
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
 class UserUpdateApiView(UpdateAPIView):
+    """Класс для изменения пользователя."""
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
 class UserDestroyApiView(DestroyAPIView):
+    """Класс для удаления пользователя."""
     queryset = User.objects.all()
     serializer_class = UserSerializer

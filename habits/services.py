@@ -3,6 +3,7 @@ from config import settings
 
 
 def send_telegram_message(chat_id, message):
+    """Отправка сообщения на телеграмм."""
     params = {
         "text": message,
         "chat_id": chat_id,
