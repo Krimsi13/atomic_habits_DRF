@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 
 from config import settings
@@ -29,6 +31,7 @@ class Habit(models.Model):
 
     place = models.CharField(max_length=50, verbose_name="Место", **NULLABLE)
     time = models.TimeField(verbose_name="Время, когда необходимо выполнять привычку")
+    date_time = models.DateTimeField(verbose_name="Время рассылки", auto_now_add=True, **NULLABLE)
     action = models.CharField(max_length=50, verbose_name="Действие")
 
     is_enjoyable = models.BooleanField(default=False, verbose_name="Признак приятной привычки")
@@ -43,7 +46,6 @@ class Habit(models.Model):
     duration = models.DurationField(default=None, verbose_name="Время на выполнение привычки", **NULLABLE)
 
     is_public = models.BooleanField(default=False, verbose_name="Признак публичности", **NULLABLE)
-
 
     def __str__(self) -> str:
         return f"Я буду {self.action} в {self.time} в {self.place} "
