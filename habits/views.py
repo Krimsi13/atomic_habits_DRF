@@ -31,7 +31,7 @@ class HabitListAPIView(ListAPIView):
     def get_queryset(self):
         user = self.request.user
         if not user.is_superuser:
-            return Habit.objects.filter(user=user)
+            return Habit.objects.filter(owner=user)
         return Habit.objects.all()
 
 
